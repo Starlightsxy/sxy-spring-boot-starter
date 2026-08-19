@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.Starlightsxy</groupId>
+    <artifactId>sxy-spring-boot-starter</artifactId>
+    <version>1.0.0</version>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.0.2</version>
+        <relativePath/>
+    </parent>
+    <!--    描述-->
+    <description>
+        没什么描述，简单描述一下吧
+    </description>
+
+    <!--    作者信息-->
+    <developers>
+        <developer>
+            <!-- 这里填你的 GitHub 账号名（或其他唯一标识），用于代码溯源 -->
+            <id>Starlightsxy</id>
+            <!-- 这里填你的真实姓名或昵称 -->
+            <name>花海</name>
+            <roles>
+                <!-- 这里可以随便写 1-2 个角色，仅供浏览者参考 -->
+                <role>Developer</role>
+                <role>Maintainer</role>
+            </roles>
+            <!--            github 关联的邮箱-->
+            <email>3369924816@qq.com</email>
+            <!--            github地址-->
+            <url>https://github.com/Starlightsxy</url>
+        </developer>
+    </developers>
+
+    <!--    告诉使用者如果这个jar出现问题应该去哪里提交问题-->
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Starlightsxy/sxy-spring-boot-starter/issues</url>
+    </issueManagement>
+    <!--项目创始年份-->
+    <inceptionYear>2026</inceptionYear>
+
+    <!--    许可证-->
+    <licenses>
+        <license>
+            <!--            允许别人自由使用你的代码（只要保留版权声明即可）-->
+            <name>Apache 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <!--    软件配置管理-->
+    <scm>
+        <!--    1. 只读仓库地址（匿名克隆，用 git:// 或 https://）-->
+        <connection>scm:git:git://github.com/Starlightsxy/sxy-spring-boot-starter.git</connection>
+        <!-- 2. 开发者写权限地址（SSH 方式，需要认证） -->
+        <developerConnection>scm:git:ssh://git@github.com:Starlightsxy/sxy-spring-boot-starter.git</developerConnection>
+        <!-- 3. 浏览地址（GitHub 项目主页） -->
+        <url>https://github.com/Starlightsxy/sxy-spring-boot-starter</url>
+        <!-- 4. 标签/版本标记，通常保持 HEAD 或填写具体的版本号 -->
+        <tag>HEAD</tag>
+    </scm>
+
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- 1. 核心依赖：自动配置 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <!-- 2. 为 application.yml 生成代码提示（可选但推荐） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- 3. 日志（可选，如果不确定用途可以先不加） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <!-- 1. 源码打包（发布到中央仓库必备） -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <excludeResources>true</excludeResources>
+                    <useDefaultExcludes>true</useDefaultExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <!-- Javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.6.3</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- GPG -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>5.1.0</version>
+                        <configuration>
+                            <!-- 改成你自己的路径 -->
+                            <executable>E:\Program Files\Gpg4win\bin\gpg.exe</executable>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.9.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <!-- 这里的serverId是之前在settings.xml中配置的 -->
+                            <publishingServerId>FlowerSea</publishingServerId>
+                            <tokenAuth>true</tokenAuth>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+<!--配置完后执行 mvn clean deploy -P release-->
+
+</project>
