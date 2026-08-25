@@ -20,7 +20,7 @@ public class GreetingAutoConfiguration {
     @Bean
     public CommandLineRunner greetingRunner(GreetingService greetingService) {
         return args -> {
-            System.out.println("=== Greeting: " + greetingService.getGreeting() + " ===");
+            System.out.println("输出了内容" + greetingService.getGreeting());
         };
     }
 }
